@@ -1,8 +1,11 @@
 (function () {
     'use strict';
-    var h = $("<div>").appendTo(document.body);
+    var h = $("<div>").appendTo(document.body).css({
+        "text-align": "center",
+        padding: "1em"
+    });
     function addBtn(title, func){
-        return $("<button>",{text: title}).click(func);
+        return $("<button>",{text: title}).click(func).appendTo(h);
     }
     $("<h1>",{text:"N進数"}).appendTo(h);
     $("<div>",{text:"10進数からN進数への変換、またはその逆ができます。\n小数、負の数は使えません。"}).appendTo(h);
@@ -10,6 +13,7 @@
     var viewN = $("<div>").appendTo(h);
     var input_base = yaju1919.addInputText(h,{
         title: "使用する記号",
+        placeholder: "重複しないように0から順に入力してください。",
         id: "input_base",
         save: "input_base",
         change: function(v){
