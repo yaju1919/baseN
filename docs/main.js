@@ -21,6 +21,7 @@
                 return a.indexOf(v) === i;
             }).join('');
             viewN.text(str.length + "進数");
+            $("#input_n").val('');
             return str;
         }
     });
@@ -58,6 +59,7 @@
     h.append("<br>");
     var input_n = yaju1919.addInputText(h,{
         title: "N進数入力欄",
+        id: "input_n",
         change: function(v){
             var base = input_base();
             return v.split('').filter(function(v){
