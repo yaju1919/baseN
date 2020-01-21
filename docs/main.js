@@ -27,7 +27,7 @@
     h.append("<br>");
     function addBtn_shortcut(title, str){
         return addBtn(title, function(){
-            $("#input_base").val(str);
+            $("#input_base").val(str).trigger("change");
         });
     }
     addBtn_shortcut("2進数", "01");
@@ -45,7 +45,7 @@
         int: true
     });
     addBtn("N進数に変換",function(){
-        view_result.text(new BaseN(input_base()).encode(input_num)).css({
+        view_result.text(new BaseN(input_base()).encode(input_num())).css({
             backgroundColor: "yellow"
         });
     });
@@ -66,7 +66,7 @@
         }
     });
     addBtn("10進数に変換",function(){
-        view_result2.text(new BaseN(input_base()).decode(input_n)).css({
+        view_result2.text(new BaseN(input_base()).decode(input_n())).css({
             backgroundColor: "lime"
         });
     });
