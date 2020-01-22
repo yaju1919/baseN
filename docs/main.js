@@ -12,7 +12,7 @@
     h.append("<br>");
     var viewN = $("<div>").appendTo(h);
     var input_base = yaju1919.addInputText(h,{
-        title: "使用する記号",
+        title: "使用する文字",
         placeholder: "重複しないように0から順に入力してください。",
         id: "input_base",
         save: "input_base",
@@ -39,6 +39,14 @@
     h.append("<br>");
     h.append("<br>");
     h.append("<br>");
+    function InformError(){
+        if(input_base().length < 2) {
+            view_result.css({backgroundColor: "pink"})
+            .text("「使用する文字」に最低でも2文字以上入力してください。");
+            return true;
+        }
+        return false;
+    }
     var input_num = yaju1919.addInputNumber(h,{
         title: "10進数入力欄",
         save: "input_num",
@@ -46,6 +54,7 @@
         int: true
     });
     addBtn("N進数に変換",function(){
+        if(InformError()) return;
         view_result.text(new BaseN(input_base()).encode(input_num())).css({
             backgroundColor: "yellow"
         });
@@ -68,6 +77,7 @@
         }
     });
     addBtn("10進数に変換",function(){
+        if(InformError()) return;
         view_result2.text(new BaseN(input_base()).decode(input_n())).css({
             backgroundColor: "lime"
         });
