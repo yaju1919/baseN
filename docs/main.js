@@ -39,9 +39,9 @@
     h.append("<br>");
     h.append("<br>");
     h.append("<br>");
-    function InformError(){
+    function InformError(elm){
         if(input_base().length < 2) {
-            view_result.css({backgroundColor: "pink"})
+            elm.css({backgroundColor: "pink"})
             .text("「使用する文字」に最低でも2文字以上入力してください。");
             return true;
         }
@@ -54,7 +54,7 @@
         int: true
     });
     addBtn("N進数に変換",function(){
-        if(InformError()) return;
+        if(InformError(view_result)) return;
         view_result.text(new BaseN(input_base()).encode(input_num())).css({
             backgroundColor: "yellow"
         });
@@ -77,7 +77,7 @@
         }
     });
     addBtn("10進数に変換",function(){
-        if(InformError()) return;
+        if(InformError(view_result2)) return;
         view_result2.text(new BaseN(input_base()).decode(input_n())).css({
             backgroundColor: "lime"
         });
