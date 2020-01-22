@@ -36,6 +36,8 @@
     addBtn_shortcut("8進数", "01234567");
     addBtn_shortcut("16進数", "0123456789ABCDEF");
     addBtn_shortcut("36進数", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    addBtn_shortcut("ひらがな", "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん");
+    addBtn_shortcut("アルファベット", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     h.append("<br>");
     h.append("<br>");
     h.append("<br>");
