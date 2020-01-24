@@ -28,7 +28,7 @@
     h.append("<br>");
     function addBtn_shortcut(title, str){
         return addBtn(title, function(){
-            $("#input_base").val(str).trigger("change");
+            $("#input_base").val(str).trigger("change").click();
         });
     }
     addBtn_shortcut("2進数", "01");
