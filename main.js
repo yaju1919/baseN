@@ -42,9 +42,9 @@
     h.append("<br>");
     h.append("<br>");
     function InformError(elm){
+        elm.empty();
         if(input_base().length < 2) {
-            elm.css({backgroundColor: "pink"})
-            .text("「使用する文字」に最低でも2文字以上入力してください。");
+            elm.text("「使用する文字」に最低でも2文字以上入力してください。("+yaju1919.getTime()+")");
             return true;
         }
         return false;
@@ -57,12 +57,13 @@
     });
     addBtn("N進数に変換",function(){
         if(InformError(view_result)) return;
-        view_result.text(new BaseN(input_base()).encode(input_num())).css({
-            backgroundColor: "yellow"
+        var result = yaju1919.baseN(input_base()).encode(input_num());
+        yaju1919.addInputText(view_result,{
+            title: "output",
+            value: result,
+            readonly: true,
+            textarea: true
         });
-    });
-    addBtn("コピー",function(){
-        yaju1919.copy(view_result.text());
     });
     var view_result = $("<div>").appendTo(h);
     h.append("<br>");
@@ -80,35 +81,13 @@
     });
     addBtn("10進数に変換",function(){
         if(InformError(view_result2)) return;
-        view_result2.text(new BaseN(input_base()).decode(input_n())).css({
-            backgroundColor: "lime"
+        var result = yaju1919.baseN(input_base()).decode(input_n())
+        yaju1919.addInputText(view_result2,{
+            title: "output",
+            value: result,
+            readonly: true,
+            textarea: true
         });
     });
-    addBtn("コピー",function(){
-        yaju1919.copy(view_result2.text());
-    });
     var view_result2 = $("<div>").appendTo(h);
-    function BaseN(base){ // N進数を作成するクラス
-        if(typeof base !== "string") return false; // error
-        var len = base.length;
-        if(len < 2) return false; // error
-        this.encode = function(num){ // 10進数をN進数に変換
-            if(isNaN(num)) return NaN;
-            var str = "", v = num;
-            if(!v) return base[0];
-            while(v){
-                v = Math.floor(v);
-                str = base[v % len] + str;
-                v /= len;
-            }
-            return str.slice(1);
-        };
-        this.decode = function(str){ // N進数を10進数に変換
-            return String(str).split("").reverse().map(function(v,i){
-                return base.indexOf(v) * Math.pow(len, i);
-            }).reduce(function(total, v){
-                return total + v;
-            });
-        };
-    }
 })();
