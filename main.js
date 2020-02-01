@@ -81,10 +81,11 @@
     });
     addBtn("10進数に変換",function(){
         if(InformError(view_result2)) return;
-        var result = yaju1919.baseN(input_base()).decode(input_n())
+        var result = yaju1919.baseN(input_base()).decode(input_n());
+        if(result === '') return;
         yaju1919.addInputText(view_result2,{
             title: "output",
-            value: result,
+            value: String(result),
             readonly: true,
             textarea: true
         });
